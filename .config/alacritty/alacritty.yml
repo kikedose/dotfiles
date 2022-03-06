@@ -1,0 +1,101 @@
+env:
+  # TERM: alacritty
+  TERM: xterm-256color
+
+window:
+  dimensions:
+    columns: 145
+    lines: 42
+
+  position:
+    x: 100
+    y: 50
+
+  padding:
+    x: 10
+    y: 10
+  dynamic_padding: false
+
+  decorations: none
+  opacity: 0.95
+  #startup_mode: Fullscreen
+
+scrolling:
+  history: 10000
+  multiplier: 3
+
+selection:
+  save_to_clipboard: true
+
+font:
+  normal:
+    family: RobotoMono Nerd Font
+    style: Medium
+
+  bold:
+    family: RobotoMono Nerd Font
+    style: Bold
+
+  italic:
+    family: RobotoMono Nerd Font
+    style: Medium Italic
+
+  bold_italic:
+    family: RobotoMono Nerd Font
+    style: Bold Italic
+
+  size: 14.0
+
+  offset:
+    x: 0
+    y: 1
+
+  glyph_offset:
+    x: 0
+    y: 0
+
+  # Thin stroke font rendering (macOS only)
+  # use_thin_strokes: true
+
+draw_bold_text_with_bright_colors: false
+
+# Colors
+colors:
+  # Default colors
+  primary:
+    background: '#282828'
+    foreground: '#ebdbb2'
+
+  # Normal colors
+  normal:
+    black:   '#282828'
+    red:     '#cc241d'
+    green:   '#98971a'
+    yellow:  '#d79921'
+    blue:    '#458588'
+    magenta: '#b16286'
+    cyan:    '#689d6a'
+    white:   '#a89984'
+
+  # Bright colors
+  bright:
+    black:   '#928374'
+    red:     '#fb4934'
+    green:   '#b8bb26'
+    yellow:  '#fabd2f'
+    blue:    '#83a598'
+    magenta: '#d3869b'
+    cyan:    '#8ec07c'
+    white:   '#ebdbb2'
+
+# Spanish Keyboard Config
+key_bindings:
+  - { key: Key2,     mods: Alt,     chars: "@"                           }
+  - { key: Key3,     mods: Alt,     chars: "#"                           }
+  - { key: Key6,     mods: Alt,     chars: "¬"                           }
+  - { key: 39,        mods: Alt,    chars: "{"                           }
+  - { key: 42,        mods: Alt,    chars: "}"                           }
+  - { key: 33,        mods: Alt,    chars: "["                           }
+  - { key: 30,        mods: Alt,    chars: "]"                           }
+  - { key: 10,        mods: Alt,    chars: "\x5c"                        } # barra invertida `\`
+  - { key: 18,        mods: Alt,    chars: "\x7c"                        } # barra vertical `|`
