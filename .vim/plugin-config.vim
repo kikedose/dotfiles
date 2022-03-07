@@ -15,6 +15,12 @@ endfunction
 "-- ALE CONFIG
 let g:ale_disable_lsp = 1
 let g:ale_linters_explicit = 1
+" Coc is linting, ALE just displays
+let g:ale_lint_on_enter = 0
+let g:ale_lint_on_filetype_changed = 0
+let g:ale_lint_on_insert_leave = 0
+let g:ale_lint_on_save = 0
+let g:ale_lint_on_text_changed = 0
 
 "-- AIRLINE CONFIG
 let g:airline_powerline_fonts=1
