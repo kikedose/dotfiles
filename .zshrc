@@ -27,6 +27,9 @@ fi
 # Git alias for config files repository management
 alias gconfig="git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
 
+# VERY IMPORTANT
+alias please="sudo"
+
 #NVM
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
