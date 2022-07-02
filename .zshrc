@@ -12,6 +12,7 @@ plugins=(
   git
   brew
   node
+  httpie
   yarn
   docker
   fzf
@@ -29,6 +30,7 @@ alias gconfig="git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
 
 # VERY IMPORTANT
 alias please="sudo"
+eval $(thefuck --alias)
 
 #NVM
 export NVM_DIR="$HOME/.nvm"
