@@ -32,19 +32,28 @@ set formatoptions-=cro
 set noerrorbells visualbell t_vb=
 set noswapfile
 set nobackup
+set nowritebackup
 set undodir=~/.vim/undodir
 set undofile
 set clipboard=unnamed
+set updatetime=300
 
 set ignorecase
 set smartcase
 set incsearch
 set hlsearch
 nnoremap <CR> :noh<CR><CR>:<backspace>
+inoremap <expr> <cr> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
 
 so ~/.vim/plugins.vim
 so ~/.vim/plugin-config.vim
 so ~/.vim/autoclose.vim
+
+" Disable automatic comment
+autocmd FileType * setlocal formatoptions-=cro
+
+" Rust ?
+filetype plugin indent on
 
 "-- COLOR & THEME CONFIG
 set termguicolors
