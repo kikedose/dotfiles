@@ -1,5 +1,7 @@
 "-- COC REMAPS
-nnoremap qf :CocCommand eslint.executeAutofix<CR>
+nnoremap qef :CocCommand eslint.executeAutofix<CR>
+nnoremap qpf :Prettier<CR>
+nnoremap qrf :RustFmt<CR>
 nnoremap <silent> K :call <SID>show_documentation()<CR>
 
 function! s:show_documentation()
@@ -12,19 +14,8 @@ function! s:show_documentation()
   endif
 endfunction
 
-"-- ALE CONFIG
-let g:ale_disable_lsp = 1
-let g:ale_linters_explicit = 1
-" Coc is linting, ALE just displays
-let g:ale_lint_on_enter = 0
-let g:ale_lint_on_filetype_changed = 0
-let g:ale_lint_on_insert_leave = 0
-let g:ale_lint_on_save = 0
-let g:ale_lint_on_text_changed = 0
-
 "-- AIRLINE CONFIG
 let g:airline_powerline_fonts=1
-let g:ale_set_highlights = 1
 
 "-- ULTISNIPS CONFIG
 let g:UltiSnipsExpandTrigger="<c-j>"
@@ -52,6 +43,3 @@ autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
       " Open the existing NERDTree on each new tab.
 autocmd BufWinEnter * silent NERDTreeMirror
-
-"-- TAGBAR CONFIG
-nmap <F8> :TagbarToggle<CR>
