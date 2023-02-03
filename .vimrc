@@ -45,6 +45,9 @@ set hlsearch
 nnoremap <CR> :noh<CR><CR>:<backspace>
 inoremap <expr> <cr> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
 
+vnoremap J :m '>+1<CR>gv=gv
+vnoremap K :m '<-2<CR>gv=gv
+
 so ~/.vim/plugins.vim
 so ~/.vim/plugin-config.vim
 so ~/.vim/autoclose.vim
