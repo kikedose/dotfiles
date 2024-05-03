@@ -9,6 +9,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-repeat'
 Plug 'yggdroot/indentline'
 Plug 'sheerun/vim-polyglot'
+Plug 'prisma/vim-prisma'
 Plug 'mattn/emmet-vim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'junegunn/fzf' | Plug 'junegunn/fzf.vim'

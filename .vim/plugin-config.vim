@@ -14,6 +14,9 @@ function! s:show_documentation()
   endif
 endfunction
 
+"-- PRETTIER
+let g:prettier#config#single_quote = 'true'
+
 "-- AIRLINE CONFIG
 let g:airline_powerline_fonts=1
 

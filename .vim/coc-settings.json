@@ -20,5 +20,12 @@
   "javascript.validate.enable": false,
   "javascript.format.enabled": false,
   "html.autoClosingTags": true,
-  "tabnine.priority": 50
+  "tabnine.priority": 50,
+
+  // python
+  "python.linting.enabled": true,
+  "python.linting.pylintEnabled": true,
+
+  // tailwind
+  "css.lint.unknownAtRules": "ignore"
 }
