@@ -44,5 +44,5 @@ if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init -)"
 fi
 
-#LVIM
-export PATH="$HOME/.local/bin:$PATH"
+#BREW
+export HOMEBREW_NO_AUTO_UPDATE=1

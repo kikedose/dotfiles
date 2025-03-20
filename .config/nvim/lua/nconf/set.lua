@@ -28,16 +28,7 @@ vim.opt.smartcase =true
 
 vim.opt.termguicolors = true
 
-vim.cmd([[set noshowmode]])
+vim.opt.showmode = true
 
 -- No automatic comment insertion
 vim.cmd([[autocmd FileType * set formatoptions-=ro]])
-
--- Diagnostics
-vim.o.updatetime = 250
-vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
-  group = vim.api.nvim_create_augroup("float_diagnostic", { clear = true }),
-  callback = function ()
-    vim.diagnostic.open_float(nil, {focus=false})
-  end
-})

@@ -68,13 +68,27 @@ dynamic_padding = false
 opacity = 0.98
 
 [window.dimensions]
-columns = 145
-lines = 42
+# columns = 145
+# lines = 42
+
+# columns = 225
+# lines = 56
+
+# TV 4k
+columns = 230
+lines = 57
+
+[window.position]
+# x = 50
+# y = 225
+
+# x = 50
+# y = 425
+
+# TV 4k
+x = 50
+y = 850
 
 [window.padding]
 x = 10
 y = 10
-
-[window.position]
-x = 100
-y = 325
