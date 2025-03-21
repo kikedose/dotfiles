@@ -15,7 +15,7 @@ return {
           lualine_b = { 'branch', 'diff' },
           lualine_c = { { 'filename', path = 1 } },
           lualine_x = { 'diagnostics' },
-          lualine_y = { 'filetype' },
+          lualine_y = { 'filetype', 'lsp_status' },
           lualine_z = { 'location' }
         },
         tabline = {

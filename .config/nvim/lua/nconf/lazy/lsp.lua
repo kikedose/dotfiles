@@ -51,16 +51,41 @@ return {
     local cmp = require('cmp')
 
     cmp.setup({
-        sources = {
-          {name = 'nvim_lsp'},
-        },
-        snippet = {
-          expand = function(args)
-            require('luasnip').lsp_expand(args.body)
-          end,
-        },
-        mapping = cmp.mapping.preset.insert({}),
-      })
-
+      sources = {
+        {name = "nvim_lsp"},
+        {name = "luasnip"},
+      },
+      snippet = {
+        expand = function(args)
+          require('luasnip').lsp_expand(args.body)
+          -- vim.snippet.expand(args.body)
+        end,
+      },
+      preselect = 'item',
+      completion = {
+        completeopt = 'menu,menuone,noinsert'
+      },
+      mapping = cmp.mapping.preset.insert({
+        ['<CR>'] = cmp.mapping.confirm({select = false}),
+        -- Jump to the next snippet placeholder
+        ['<C-f>'] = cmp.mapping(function(fallback)
+          local luasnip = require('luasnip')
+          if luasnip.locally_jumpable(1) then
+            luasnip.jump(1)
+          else
+            fallback()
+          end
+        end, {'i', 's'}),
+        -- Jump to the previous snippet placeholder
+        ['<C-b>'] = cmp.mapping(function(fallback)
+          local luasnip = require('luasnip')
+          if luasnip.locally_jumpable(-1) then
+            luasnip.jump(-1)
+          else
+            fallback()
+          end
+        end, {'i', 's'}),
+      }),
+    })
   end
 }

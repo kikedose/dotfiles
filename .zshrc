@@ -31,6 +31,9 @@ alias gconfig="git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
 alias please="sudo"
 eval $(thefuck --alias)
 
+# NEOVIM
+export PATH="/usr/local/nvim/bin:$PATH"
+
 #NVM
 export NVM_DIR="$HOME/.nvm"
   [ -s "/usr/local/opt/nvm/nvm.sh" ] && \. "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
