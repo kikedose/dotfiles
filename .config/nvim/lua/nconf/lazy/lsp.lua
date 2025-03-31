@@ -55,6 +55,7 @@ return {
       sources = {
         {name = "nvim_lsp"},
         {name = "luasnip"},
+        {name = "path"},
       },
       snippet = {
         expand = function(args)
@@ -65,6 +66,16 @@ return {
       preselect = 'item',
       completion = {
         completeopt = 'menu,menuone,noinsert'
+      },
+      window = {
+        completion = {
+          border = "rounded", -- Options: "single", "double", "rounded", "solid", "shadow"
+          winhighlight = "Normal:Pmenu,FloatBorder:PmenuBorder,CursorLine:PmenuSel,Search:None",
+        },
+        documentation = {
+          border = "rounded",
+          winhighlight = "Normal:Pmenu,FloatBorder:PmenuBorder,CursorLine:PmenuSel,Search:None",
+        },
       },
       mapping = cmp.mapping.preset.insert({
         ['<CR>'] = cmp.mapping.confirm({select = false}),

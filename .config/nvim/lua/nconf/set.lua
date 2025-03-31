@@ -30,5 +30,9 @@ vim.opt.termguicolors = true
 
 vim.opt.showmode = false
 
+vim.diagnostic.config({
+  float = { border = "rounded" }
+})
+
 -- No automatic comment insertion
 vim.cmd([[autocmd FileType * set formatoptions-=ro]])
