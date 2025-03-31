@@ -1,5 +1,6 @@
 return {
   "neovim/nvim-lspconfig",
+  version = "*", -- remove after they fix ESLint
   dependencies = {
     "hrsh7th/cmp-nvim-lsp",
     "hrsh7th/nvim-cmp",
