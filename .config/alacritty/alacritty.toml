@@ -69,21 +69,21 @@ opacity = 0.98
 
 [window.dimensions]
 # Retina
-columns = 151
-lines = 43
+# columns = 151
+# lines = 43
 
 # TV 4k
-# columns = 230
-# lines = 57
+columns = 230
+lines = 57
 
 [window.position]
 # Retina
-x = 50
-y = 350
+# x = 50
+# y = 350
 
 # TV 4k
-# x = 50
-# y = 850
+x = 50
+y = 850
 
 [window.padding]
 x = 10

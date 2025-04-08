@@ -7,6 +7,7 @@ vim.opt.smarttab = true
 vim.opt.expandtab = true
 vim.opt.list = true
 vim.opt.listchars = "eol:.,tab:>-,trail:~,extends:>,precedes:<"
+vim.opt.wrap = false
 
 vim.opt.number = true
 vim.opt.relativenumber = true
@@ -31,7 +32,14 @@ vim.opt.termguicolors = true
 vim.opt.showmode = false
 
 vim.diagnostic.config({
-  float = { border = "rounded" }
+  float = {
+    border = "rounded",
+    max_width = 80,
+  },
+})
+
+vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+  border = "rounded",
 })
 
 -- No automatic comment insertion
