@@ -8,11 +8,13 @@ HYPHEN_INSENSITIVE="true"
 COMPLETION_WAITING_DOTS="true"
 
 plugins=(
+  zsh-syntax-highlighting
   git
   brew
   node
+  npm
+  tmux
   httpie
-  yarn
   docker
   fzf
   z
@@ -30,6 +32,9 @@ alias gconfig="git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
 # VERY IMPORTANT
 alias please="sudo"
 eval $(thefuck --alias)
+
+# VI BINDINGS
+bindkey -v
 
 # NEOVIM
 export PATH="/usr/local/nvim/bin:$PATH"
