@@ -31,6 +31,7 @@ alias gconfig="git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
 
 # VERY IMPORTANT
 alias please="sudo"
+alias zrc="vim ~/.zshrc"
 eval $(thefuck --alias)
 
 # VI BINDINGS
