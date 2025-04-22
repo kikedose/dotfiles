@@ -1,3 +1,4 @@
 .dotfiles
 undodir
+lazy-lock.json
 /node_modules
