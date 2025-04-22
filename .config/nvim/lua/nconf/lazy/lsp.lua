@@ -1,9 +1,8 @@
 return {
-  "neovim/nvim-lspconfig",
-  version = "*", -- remove after they fix ESLint
+  'neovim/nvim-lspconfig',
   dependencies = {
-    "hrsh7th/cmp-nvim-lsp",
-    "hrsh7th/nvim-cmp",
+    'hrsh7th/cmp-nvim-lsp',
+    'hrsh7th/nvim-cmp',
   },
 
   config = function()
@@ -12,50 +11,29 @@ return {
       'force',
       lspconfig_defaults.capabilities,
       require('cmp_nvim_lsp').default_capabilities()
-      )
+    )
 
     vim.api.nvim_create_autocmd('LspAttach', {
-        desc = 'LSP actions',
-        callback = function(event)
-          local opts = {buffer = event.buf}
+      desc = 'LSP actions',
+      callback = function(event)
+        local opts = { buffer = event.buf }
 
-          vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
-          vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
-          vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', opts)
-          vim.keymap.set('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>', opts)
-          vim.keymap.set('n', 'go', '<cmd>lua vim.lsp.buf.type_definition()<cr>', opts)
-          vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', opts)
-          vim.keymap.set('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
-          vim.keymap.set('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
-          vim.keymap.set({'n', 'x'}, '<F3>', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', opts)
-          vim.keymap.set('n', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
-        end,
-      })
-
-    -----------
-    -- SERVERS
-    require'lspconfig'.html.setup{}
-    require'lspconfig'.cssls.setup{}
-    require'lspconfig'.jsonls.setup{}
-    require'lspconfig'.tailwindcss.setup{}
-    require'lspconfig'.ts_ls.setup{}
-    require'lspconfig'.eslint.setup{
-      on_attach = function(client, bufnr)
-        vim.api.nvim_create_autocmd("BufWritePre", {
-            buffer = bufnr,
-            command = "EslintFixAll",
-          })
-      end
-    }
-    -----------
+        vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
+        vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
+        vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', opts)
+        vim.keymap.set('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>', opts)
+        vim.keymap.set('n', 'go', '<cmd>lua vim.lsp.buf.type_definition()<cr>', opts)
+        vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', opts)
+        vim.keymap.set('n', 'bf', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', opts)
+      end,
+    })
 
     local cmp = require('cmp')
-
     cmp.setup({
       sources = {
-        {name = "nvim_lsp"},
-        {name = "luasnip"},
-        {name = "path"},
+        { name = 'nvim_lsp' },
+        { name = 'luasnip' },
+        { name = 'path' },
       },
       snippet = {
         expand = function(args)
@@ -65,20 +43,20 @@ return {
       },
       preselect = 'item',
       completion = {
-        completeopt = 'menu,menuone,noinsert'
+        completeopt = 'menu,menuone,noinsert',
       },
       window = {
         completion = {
-          border = "rounded", -- Options: "single", "double", "rounded", "solid", "shadow"
-          winhighlight = "Normal:Pmenu,FloatBorder:PmenuBorder,CursorLine:PmenuSel,Search:None",
+          border = 'rounded',
+          winhighlight = 'Normal:Pmenu,FloatBorder:PmenuBorder,CursorLine:PmenuSel,Search:None',
         },
         documentation = {
-          border = "rounded",
-          winhighlight = "Normal:Pmenu,FloatBorder:PmenuBorder,CursorLine:PmenuSel,Search:None",
+          border = 'rounded',
+          winhighlight = 'Normal:Pmenu,FloatBorder:PmenuBorder,CursorLine:PmenuSel,Search:None',
         },
       },
       mapping = cmp.mapping.preset.insert({
-        ['<CR>'] = cmp.mapping.confirm({select = false}),
+        ['<CR>'] = cmp.mapping.confirm({ select = false }),
         -- Jump to the next snippet placeholder
         ['<C-f>'] = cmp.mapping(function(fallback)
           local luasnip = require('luasnip')
@@ -87,7 +65,7 @@ return {
           else
             fallback()
           end
-        end, {'i', 's'}),
+        end, { 'i', 's' }),
         -- Jump to the previous snippet placeholder
         ['<C-b>'] = cmp.mapping(function(fallback)
           local luasnip = require('luasnip')
@@ -96,8 +74,8 @@ return {
           else
             fallback()
           end
-        end, {'i', 's'}),
+        end, { 'i', 's' }),
       }),
     })
-  end
+  end,
 }
