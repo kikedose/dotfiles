@@ -1,0 +1,90 @@
+[colors]
+draw_bold_text_with_bright_colors = false
+
+[colors.bright]
+black = "#928374"
+blue = "#83a598"
+cyan = "#8ec07c"
+green = "#b8bb26"
+magenta = "#d3869b"
+red = "#fb4934"
+white = "#ebdbb2"
+yellow = "#fabd2f"
+
+[colors.normal]
+black = "#282828"
+blue = "#458588"
+cyan = "#689d6a"
+green = "#98971a"
+magenta = "#b16286"
+red = "#cc241d"
+white = "#a89984"
+yellow = "#d79921"
+
+[colors.primary]
+background = "#282828"
+foreground = "#ebdbb2"
+
+[env]
+TERM = "xterm-256color"
+
+[font]
+size = 14.0
+
+[font.bold]
+family = "RobotoMono Nerd Font"
+style = "Bold"
+
+[font.bold_italic]
+family = "RobotoMono Nerd Font"
+style = "Bold Italic"
+
+[font.glyph_offset]
+x = 0
+y = 0
+
+[font.italic]
+family = "RobotoMono Nerd Font"
+style = "Medium Italic"
+
+[font.normal]
+family = "RobotoMono Nerd Font"
+style = "Medium"
+
+[font.offset]
+x = 0
+y = 1
+
+[scrolling]
+history = 10000
+multiplier = 3
+
+[selection]
+save_to_clipboard = true
+
+[window]
+decorations = "none"
+dynamic_padding = false
+opacity = 0.98
+
+[window.dimensions]
+# Retina
+# columns = 151
+# lines = 43
+
+# TV 4k
+columns = 230
+lines = 57
+
+[window.position]
+# Retina
+# x = 50
+# y = 350
+
+# TV 4k
+x = 50
+y = 850
+
+[window.padding]
+x = 10
+y = 10
