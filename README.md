@@ -1,5 +1,5 @@
 # .dotfiles
-**Ubuntu v24.04** on WLS(2)
+**Ubuntu v24.04** on WLS(2) and Windows Terminal.
 
 Config for Neovim as a default editor.
 Fallback to Vim (plugins commented).
@@ -15,14 +15,15 @@ Fallback to Vim (plugins commented).
 8. Test with `echo $SHELL`. Expected path: `/usr/bin/zsh` or similar.
 9. Test with `$SHELL --version`. Expected result: `zsh 5.9` or newer.
 10. Install **oh my zsh**: `sh -c "$(curl -fsSL https://install.ohmyz.sh/)"`.
+11. Clone the syntax highlight plugin: `git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting`.
 
 ## Install Neovim
-As of April 2025, `sudo apt install neovim` installs v^0.9, which conflicts with our onfiguration.
+As of April 2025, `sudo apt install neovim` installs v^0.9, which conflicts with our configuration.
 We need v^0.11.
 
 1. If you previously installed nvim via apt, try `sudo apt upgrade neovim` and test with `nvim --version`.
 If <0.11, uninstall with `sudo apt remove neovim`, remove leftovers with `sudo apt purge neovim` and clean up
-with `audo apt autoremove`.
+with `sudo apt autoremove`.
 2. Do install these dependencies: `sudo apt install xclip python3-pynvim`. They are not included in the build.
 3. Download AppImage: `curl -LO https://github.com/neovim/neovim/releases/download/v0.11.0/nvim-linux-x86_64.appimage`.
 4. Make it executable: `chmod u+x nvim-linux-x86_64.appimage`.
@@ -33,9 +34,11 @@ with `audo apt autoremove`.
 ## Prepare bare repository
 1. To avoid recursion problems, let's make sure our source repository ignores the folder where we'll clone it: `echo ".dotfiles" >> ~/.gitignore`.
 2. Let's clone our dotfiles into a bare repository in a "dot" folder `git clone --bare git@github.com:kikedose/dotfiles.git ~/.dotfiles`.
-3. Define the alias in the current shell scope: `alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'`. This alias should already be included our the `.zshrc`.
+3. Define the alias in the current shell scope: `alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'`. This alias should already be included in our `.zshrc`.
 
-## Set up your own repo:
+## Set up your own repo
+If you forked this repo and plan to track your fork, skip to step 4.
+
 1. Create your own empty repository on GitHub/GitLab/etc.
 2. Update the remote: `dotfiles remote set-url origin <your-git-repo-url>`.
 3. Verify the change with: `dotfiles remote -v`.
@@ -60,4 +63,35 @@ dotfiles status
 dotfiles add .zshrc
 dotfiles commit -m "updated zsh config"
 dotfiles push -u origin main
+```
+
+## Set up clipboard
+We want to prevent the system `ctrl-c` and `ctrl-v` from conflicting with Neovim's keybinds.
+These are the relevant changes on the **Windows Terminal** JSON config file (note the trailing commas):
+```JSON
+{
+    "keybindings":
+    [
+        {
+            "id": "User.paste",
+            "keys": "ctrl+shift+v"
+        },
+        {
+            "id": "User.copy.644BA8F2",
+            "keys": "ctrl+shift+c"
+        },
+    ],
+}
+```
+
+## Extras
+- Install `nvm` (Node Version Manager).
+- Install `tmux` (Terminal Multiplexer).
+- Install `tree`.
+- Install `neofetch`.
+
+## .gitconfig
+```GIT
+[alias]
+  ladog = log --all --decorate --oneline --graph
 ```

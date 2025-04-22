@@ -1,6 +1,5 @@
 export ZSH="$HOME/.oh-my-zsh"
 
-# ZSH
 DEFAULT_USER=$USER
 prompt_context(){}
 ZSH_THEME="eastwood"
@@ -22,15 +21,14 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
-export EDITOR='nvim'
-
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vim'
 fi
+export EDITOR='nvim'
 
-# VERY IMPORTANT
 alias please='sudo'
 alias zrc='nvim ~/.zshrc'
+alias zsc='source ~/.zshrc'
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 
 # VI BINDINGS
