@@ -48,8 +48,8 @@ inoremap <expr> <cr> coc#pum#visible() ? coc#pum#confirm() : "\<CR>"
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 
-so ~/.vim/plugins.vim
-so ~/.vim/plugin-config.vim
+" so ~/.vim/plugins.vim
+" so ~/.vim/plugin-config.vim
 so ~/.vim/autoclose.vim
 
 " Disable automatic comment
@@ -60,8 +60,8 @@ filetype plugin indent on
 
 "-- COLOR & THEME CONFIG
 set termguicolors
-let g:gruvbox_italic=1
-colorscheme gruvbox
+" let g:gruvbox_italic=1
+" colorscheme gruvbox
 set background=dark
 hi Normal guibg=NONE ctermbg=NONE
 let g:terminal_ansi_colors = [

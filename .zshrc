@@ -22,28 +22,22 @@ plugins=(
 
 source $ZSH/oh-my-zsh.sh
 
+export EDITOR='nvim'
+
 if [[ -n $SSH_CONNECTION ]]; then
   export EDITOR='vim'
 fi
 
-# Git alias for config files repository management
-alias gconfig="git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME"
-
 # VERY IMPORTANT
 alias please="sudo"
-alias zrc="vim ~/.zshrc"
-eval $(thefuck --alias)
+alias zrc="nvim ~/.zshrc"
 
 # VI BINDINGS
 bindkey -v
 
-# NEOVIM
-export PATH="/usr/local/nvim/bin:$PATH"
-
 #NVM
-export NVM_DIR="$HOME/.nvm"
-  [ -s "/usr/local/opt/nvm/nvm.sh" ] && \. "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
-  [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
 #PYENV
 if command -v pyenv 1>/dev/null 2>&1; then
@@ -52,6 +46,3 @@ if command -v pyenv 1>/dev/null 2>&1; then
   eval "$(pyenv init --path)"
   eval "$(pyenv init -)"
 fi
-
-#BREW
-export HOMEBREW_NO_AUTO_UPDATE=1
