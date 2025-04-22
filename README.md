@@ -30,6 +30,7 @@ with `sudo apt autoremove`.
 5. Rename for convenience: `mv nvim-linux-x86_64.appimage nvim`.
 6. Move to PATH: `sudo mv nvim /usr/local/bin/`.
 7. Test with `nvim --version`. Expected result `NVIM v0.11.0`.
+8. Create the undodir.
 
 ## Prepare bare repository
 1. To avoid recursion problems, let's make sure our source repository ignores the folder where we'll clone it: `echo ".dotfiles" >> ~/.gitignore`.
