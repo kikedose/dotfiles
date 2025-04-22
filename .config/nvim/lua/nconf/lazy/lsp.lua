@@ -1,8 +1,10 @@
 return {
   'neovim/nvim-lspconfig',
   dependencies = {
-    'hrsh7th/cmp-nvim-lsp',
+    { 'williamboman/mason.nvim', opts = {} },
     'hrsh7th/nvim-cmp',
+    'hrsh7th/cmp-nvim-lsp',
+    'hrsh7th/cmp-path',
   },
 
   config = function()
@@ -19,6 +21,7 @@ return {
         local opts = { buffer = event.buf }
 
         vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
+        vim.keymap.set('n', 'ga', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
         vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
         vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', opts)
         vim.keymap.set('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>', opts)
