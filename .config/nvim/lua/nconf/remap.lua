@@ -3,8 +3,10 @@ vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv", { desc = 'Moves whole line down' })
 vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv", { desc = 'Moves whole line up' })
 
 -- Diagnostics
-vim.keymap.set('n', '<leader>d', vim.diagnostic.open_float, { desc = 'Show line [D]iagnostics' })
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Show diagnostics [Q]uickfix list' })
+vim.keymap.set('n', '<leader>d', function()
+  vim.diagnostic.open_float(nil, { focusable = true })
+end, { desc = 'Show line [D]iagnostics' })
 
 --Buffer navigation
 vim.keymap.set('n', '<Tab>', ':bn<CR>', { desc = 'Switches to next buffer' })

@@ -1,3 +1,5 @@
+-- THIS FILE IS LOADED BEFORE THE PLUGINS
+
 -- No automatic comment insertion
 vim.cmd([[autocmd FileType * set formatoptions-=ro]])
 
@@ -16,10 +18,6 @@ vim.diagnostic.config({
     border = 'rounded',
     max_width = 80,
   },
-})
-
-vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(vim.lsp.handlers.hover, {
-  border = 'rounded',
 })
 
 -- Close all buffers except the current one
