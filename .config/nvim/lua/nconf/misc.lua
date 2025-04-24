@@ -38,6 +38,10 @@ function CloseAllBuffersExceptCurrent()
     end
   end
 
+  local has_notify, notify = pcall(require, 'notify')
+  if has_notify then
+    vim.notify = notify
+  end
   vim.notify('Closed all buffers except current', vim.log.levels.INFO)
 end
 
@@ -53,6 +57,10 @@ function Trim()
   vim.cmd('keeppatterns %s/\\s\\+$\\|\\r$//e')
   vim.fn.winrestview(save)
 
+  local has_notify, notify = pcall(require, 'notify')
+  if has_notify then
+    vim.notify = notify
+  end
   vim.notify('Trimmed ^M line endings', vim.log.levels.INFO)
 end
 
