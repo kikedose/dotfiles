@@ -88,3 +88,8 @@ y = 850
 [window.padding]
 x = 10
 y = 10
+
+[terminal.shell]
+# WSL
+# program = "C:\\Windows\\system32\\wsl.exe"
+# args = ["--cd", "~"]
