@@ -45,9 +45,15 @@ vim.api.nvim_create_user_command('BufOnly', function()
   CloseAllBuffersExceptCurrent()
 end, { desc = 'Close all buffers except current' })
 
-vim.keymap.set(
-  'n',
-  '<Leader>bo',
-  CloseAllBuffersExceptCurrent,
-  { desc = 'Close all buffers except current' }
-)
+vim.keymap.set('n', '<Leader>bo', CloseAllBuffersExceptCurrent, { desc = 'Close all buffers except current' })
+
+-- Trim Microsoft line endings
+function Trim()
+  local save = vim.fn.winsaveview()
+  vim.cmd('keeppatterns %s/\\s\\+$\\|\\r$//e')
+  vim.fn.winrestview(save)
+
+  vim.notify('Trimmed ^M line endings', vim.log.levels.INFO)
+end
+
+vim.keymap.set('n', '<Leader>tt', Trim, { desc = 'Trimmed ^M line endings' })
