@@ -19,9 +19,6 @@ plugins=(
   z
 )
 
-# VI BINDINGS
-bindkey -v
-
 source $ZSH/oh-my-zsh.sh
 
 if [[ -n $SSH_CONNECTION ]]; then
@@ -29,6 +26,12 @@ if [[ -n $SSH_CONNECTION ]]; then
 fi
 export EDITOR='nvim'
 
+# VI BINDINGS
+bindkey -v
+# resolves `vi ins` keybind conflicts with fzf
+bindkey -M viins '^I' fzf-completion
+
+# ALIASES
 alias please='sudo'
 alias zrc='nvim ~/.zshrc'
 alias zsc='source ~/.zshrc'
