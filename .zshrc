@@ -19,6 +19,9 @@ plugins=(
   z
 )
 
+# VI BINDINGS
+bindkey -v
+
 source $ZSH/oh-my-zsh.sh
 
 if [[ -n $SSH_CONNECTION ]]; then
@@ -30,9 +33,7 @@ alias please='sudo'
 alias zrc='nvim ~/.zshrc'
 alias zsc='source ~/.zshrc'
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
-
-# VI BINDINGS
-bindkey -v
+alias bat='batcat'
 
 #NVM
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
