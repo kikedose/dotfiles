@@ -71,6 +71,7 @@ We want to prevent the system `ctrl-c` and `ctrl-v` from conflicting with Neovim
 These are the relevant changes on the **Windows Terminal** JSON config file (note the trailing commas):
 ```JSON
 {
+    ...,
     "keybindings":
     [
         {
@@ -81,15 +82,19 @@ These are the relevant changes on the **Windows Terminal** JSON config file (not
             "id": "User.copy.644BA8F2",
             "keys": "ctrl+shift+c"
         },
+        ...
     ],
+    ...
 }
 ```
 
 ## Extras
 - Install `nvm` (Node Version Manager).
 - Install `tmux` (Terminal Multiplexer).
-- Install `tree`.
-- Install `neofetch`.
+- Install utilities `tree, neofetch, bat, ripgrep, fzf, delta-git, fd`.
+- Clone `fzf-git` into ~/.local/share/fzf-git/.
+
+TODO: automate installs in a script
 
 ## .gitconfig
 ```GIT

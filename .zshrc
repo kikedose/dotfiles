@@ -12,10 +12,10 @@ plugins=(
   brew
   node
   npm
-  tmux
+  # tmux
   httpie
   docker
-  fzf
+  # fzf
   z
 )
 
@@ -27,9 +27,10 @@ fi
 export EDITOR='nvim'
 
 # VI BINDINGS
-bindkey -v
-# resolves `vi ins` keybind conflicts with fzf
-bindkey -M viins '^I' fzf-completion
+# bindkey -v
+# resolves `vi insert mode` keybind conflicts with fzf
+# further debugging necessary
+# bindkey -M viins '^I' fzf-completion
 
 # ALIASES
 alias please='sudo'
@@ -37,12 +38,23 @@ alias zrc='nvim ~/.zshrc'
 alias zsc='source ~/.zshrc'
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'
 alias bat='batcat'
+alias fd='fdfind'
 
-#NVM
+# FD + FZF
+# git-ignores `**` autocompletion suggestions
+export FZF_DEFAULT_COMMAND='fd --hidden --strip-cwd-prefix --exclude .git'
+_fzf_compgen_path() {
+  fd --type=d --hidden --exclude .git . "$1"
+}
+# fzf-git commands
+source $HOME/.local/share/fzf-git/fzf-git.sh
+
+# NVM
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+# This loads nvm
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
 
-#PYENV
+# PYENV
 if command -v pyenv 1>/dev/null 2>&1; then
   export PYENV_ROOT="$HOME/.pyenv"
   export PATH="$PYENV_ROOT/bin:$PATH"
