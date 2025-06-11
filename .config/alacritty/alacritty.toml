@@ -55,6 +55,9 @@ style = "Bold"
 x = 0
 y = 0
 
+[mouse]
+hide_when_typing = true
+
 [scrolling]
 history = 10000
 multiplier = 3
@@ -65,8 +68,8 @@ save_to_clipboard = true
 [window]
 decorations = "none"
 dynamic_padding = false
-opacity = 0.98
-# startup_mode = "maximized"
+opacity = 0.90
+startup_mode = "maximized"
 
 [window.dimensions]
 # Retina
@@ -74,8 +77,8 @@ opacity = 0.98
 # lines = 43
 
 # TV 4k
-columns = 230
-lines = 57
+# columns = 230
+# lines = 57
 
 [window.position]
 # Retina
@@ -83,14 +86,14 @@ lines = 57
 # y = 350
 
 # TV 4k
-x = 50
-y = 850
+# x = 50
+# y = 850
 
 [window.padding]
 x = 10
 y = 10
 
-[terminal.shell]
+# [terminal.shell]
 # WSL
-program = "C:\\Windows\\system32\\wsl.exe"
-args = ["--cd", "~"]
+# program = "C:\\Windows\\system32\\wsl.exe"
+# args = ["--cd", "~"]
