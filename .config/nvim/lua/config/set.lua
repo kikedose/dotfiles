@@ -33,5 +33,5 @@ vim.opt.undodir = os.getenv('HOME') .. '/.config/nvim/undodir'
 vim.opt.undofile = true
 vim.schedule(function()
   -- vim.opt.clipboard = 'unnamed' -- macOS
-  vim.opt.clipboard = 'unnamedplus' -- WSL + Ubuntu
+  vim.opt.clipboard = 'unnamedplus' -- Linux
 end)

@@ -32,10 +32,3 @@ vim.keymap.set(
   [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]],
   { desc = 'Find and replace word under cursor' }
 )
-
--- WLS
--- Clipboard remaps were extremely slow. Opted for syncing both clipboards.
--- See ./set.lua 'vim.opt.clipboard'
--- vim.keymap.set({"n", "v"}, "<leader>y", '"+y', { desc = "Yanks to system clipboard" })
--- vim.keymap.set({"n", "v"}, "<leader>yy", '"+yy', { desc = "Yanks line to system clipboard" })
--- vim.keymap.set({"n", "v"}, "<leader>p", '"+p', { desc = "Pastes from system clipboard" })
