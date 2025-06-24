@@ -55,7 +55,9 @@ _fzf_compgen_path() {
   fd --type=d --hidden --exclude .git . "$1"
 }
 
-# NVM
-export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-# This loads nvm
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+#NVM
+export NVM_DIR="$HOME/.nvm"
+source /usr/share/nvm/init-nvm.sh
+
+# WSL + ARCH CLIPBOARD
+export PATH="$HOME/.local/bin:$PATH"

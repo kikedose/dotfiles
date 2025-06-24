@@ -1,3 +1,29 @@
+-- Clipboard configuration
+if vim.fn.has('wsl') == 1 then
+  -- WSL: Use win32yank
+  vim.g.clipboard = {
+    name = 'win32yank',
+    copy = {
+      ['+'] = { 'win32yank', '-i', '--crlf' },
+      ['*'] = { 'win32yank', '-i', '--crlf' },
+    },
+    paste = {
+      ['+'] = { 'win32yank', '-o', '--lf' },
+      ['*'] = { 'win32yank', '-o', '--lf' },
+    },
+    cache_enabled = 0,
+  }
+
+  vim.opt.clipboard = 'unnamedplus'
+elseif vim.fn.has('unix') == 1 then
+  -- Native Linux: Use system clipboard
+  vim.opt.clipboard = 'unnamedplus'
+elseif vim.fn.has('mac') == 1 then
+  -- macOS: Use system clipboard
+  vim.opt.clipboard = 'unnamed'
+end
+
+vim.opt.mouse = ''
 vim.opt.termguicolors = true
 vim.opt.tabstop = 2
 vim.opt.softtabstop = 2
@@ -31,7 +57,3 @@ vim.opt.swapfile = false
 vim.opt.backup = false
 vim.opt.undodir = os.getenv('HOME') .. '/.config/nvim/undodir'
 vim.opt.undofile = true
-vim.schedule(function()
-  -- vim.opt.clipboard = 'unnamed' -- macOS
-  vim.opt.clipboard = 'unnamedplus' -- Linux
-end)
