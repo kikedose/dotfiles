@@ -29,7 +29,7 @@ function CloseAllBuffersExceptCurrent()
     -- Skip the current buffer
     if buf ~= current_buf then
       -- Check if the buffer is loaded and not modified
-      if vim.api.nvim_buf_is_loaded(buf) and not vim.api.nvim_buf_get_option(buf, 'modified') then
+      if vim.api.nvim_buf_is_loaded(buf) and not vim.bo.modified then
         -- Delete the buffer
         vim.api.nvim_buf_delete(buf, { force = false })
       end
