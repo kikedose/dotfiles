@@ -4,7 +4,7 @@ return {
   init_options = { provideFormatter = true }, -- needed to enable formatting capabilities
   root_markers = { 'package.json', '.git' },
   settings = {
-    css = { validate = true },
+    css = { validate = true, lint = { unknownAtRules = 'ignore' } },
     scss = { validate = true },
     less = { validate = true },
   },
