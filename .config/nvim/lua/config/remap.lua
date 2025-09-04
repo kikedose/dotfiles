@@ -8,6 +8,11 @@ vim.keymap.set('n', '<leader>d', function()
   vim.diagnostic.open_float(nil, { focusable = true })
 end, { desc = 'Show line [D]iagnostics' })
 
+-- LSP formatting
+vim.keymap.set('n', '<leader><Space>', function()
+  vim.lsp.buf.format { async = true }
+end, { desc = 'Format buffer' })
+
 --Buffer navigation
 vim.keymap.set('n', '<Tab>', ':bn<CR>', { desc = 'Switches to next buffer' })
 vim.keymap.set('n', '<S-Tab>', ':bp<CR>', { desc = 'Switches to previous buffer' })

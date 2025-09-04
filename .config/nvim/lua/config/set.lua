@@ -16,7 +16,7 @@ if vim.fn.has('wsl') == 1 then
 
   vim.opt.clipboard = 'unnamedplus'
 elseif vim.fn.has('unix') == 1 then
-  -- Native Linux: Use system clipboard
+  -- Linux: Use system clipboard
   vim.opt.clipboard = 'unnamedplus'
 elseif vim.fn.has('mac') == 1 then
   -- macOS: Use system clipboard

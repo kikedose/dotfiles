@@ -2,6 +2,7 @@
   "name": "nvim-snippets",
   "contributes": {
     "snippets": [
+      { "language": "all", "path": "./all.json" },
       { "language": "html", "path": "./html.json" },
       { "language": ["typescriptreact", "javascriptreact"], "path": "./react.json" }
     ]

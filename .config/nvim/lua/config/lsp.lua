@@ -1,3 +1,4 @@
+vim.lsp.enable('clang_ls')
 vim.lsp.enable('css_ls')
 vim.lsp.enable('eslint_ls')
 vim.lsp.enable('html_ls')
