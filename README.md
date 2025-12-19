@@ -100,4 +100,6 @@ TODO: automate installs in a script
 ```GIT
 [alias]
   ladog = log --all --decorate --oneline --graph
+[init]
+  defaultBranch = main
 ```
