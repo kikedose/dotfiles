@@ -32,11 +32,11 @@ TERM = "xterm-256color"
 size = 12.0
 
 [font.bold]
-family = "JetBrainsMono Nerd Font"
+family = "JetBrainsMono Nerd Font Mono"
 style = "ExtraBold"
 
 [font.bold_italic]
-family = "JetBrainsMono NF"
+family = "JetBrainsMono Nerd Font Mono"
 style = "Bold Italic"
 
 [font.glyph_offset]
@@ -44,11 +44,11 @@ x = 0
 y = 0
 
 [font.italic]
-family = "JetBrainsMono Nerd Font"
+family = "JetBrainsMono Nerd Font Mono"
 style = "SemiBold Italic"
 
 [font.normal]
-family = "JetBrainsMono Nerd Font"
+family = "JetBrainsMono Nerd Font Mono"
 style = "Bold"
 
 [font.offset]
@@ -72,19 +72,11 @@ opacity = 0.90
 startup_mode = "maximized"
 
 [window.dimensions]
-# Retina
-# columns = 151
-# lines = 43
-
 # TV 4k
 # columns = 230
 # lines = 57
 
 [window.position]
-# Retina
-# x = 50
-# y = 350
-
 # TV 4k
 # x = 50
 # y = 850

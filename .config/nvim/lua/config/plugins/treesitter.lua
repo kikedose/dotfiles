@@ -10,16 +10,16 @@ return {
       'tsx',
       'json',
       'jsdoc',
-      -- 'html',
-      -- 'css',
+      'html',
+      'css',
       'regex',
       -- python,
-      -- 'lua',
+      'lua',
       -- 'vim',
       -- 'vimdoc',
       -- 'c',
-      -- 'query',
-      'dart',
+      'query',
+      -- 'dart',
     })
 
     vim.api.nvim_create_autocmd('FileType', {

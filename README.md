@@ -1,105 +1,220 @@
 # .dotfiles
-**Ubuntu v24.04** on WLS(2) and Windows Terminal.
+**archlinux** on WLS(2) and Alacritty setup.
+February 2026.
 
 Config for Neovim as a default editor.
-Fallback to Vim (plugins commented).
+Fallback config for Vim (plugins commented).
 
-## Set up Z shell
-1. Fetch latest versions: `sudo apt update && sudo apt upgrade`.
-2. Ensure **cURL** is installed: `curl --version`. If not, `sudo apt install curl`.
-3. Ensure **git** (>2.4.11) is installed: `git --version`. If not, `sudo apt install git`.
-4. Install **zsh**: `sudo apt install zsh`.
-5. Verify installation: `zsh --version`.
-6. Make zsh your default shell: `chsh -s $(which zsh)`.
-7. Log out and back in again.
-8. Test with `echo $SHELL`. Expected path: `/usr/bin/zsh` or similar.
-9. Test with `$SHELL --version`. Expected result: `zsh 5.9` or newer.
-10. Install **oh my zsh**: `sh -c "$(curl -fsSL https://install.ohmyz.sh/)"`.
-11. Clone the syntax highlight plugin: `git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting`.
+TODO: automate installs in a script
 
-## Install Neovim
-As of April 2025, `sudo apt install neovim` installs v^0.9, which conflicts with our configuration.
-We need v^0.11.
 
-1. If you previously installed nvim via apt, try `sudo apt upgrade neovim` and test with `nvim --version`.
-If <0.11, uninstall with `sudo apt remove neovim`, remove leftovers with `sudo apt purge neovim` and clean up
-with `sudo apt autoremove`.
-2. Do install these dependencies: `sudo apt install xclip python3-pynvim`. They are not included in the build.
-3. Download AppImage: `curl -LO https://github.com/neovim/neovim/releases/download/v0.11.0/nvim-linux-x86_64.appimage`.
-4. Make it executable: `chmod u+x nvim-linux-x86_64.appimage`.
-5. Rename for convenience: `mv nvim-linux-x86_64.appimage nvim`.
-6. Move to PATH: `sudo mv nvim /usr/local/bin/`.
-7. Test with `nvim --version`. Expected result `NVIM v0.11.0`.
-8. Create the undodir.
+## Set up WSL
+Check distro list and install archlinux.
+```powershell
+#PowerShell
+wsl --list --online
+wsl --install -d archlinux
+```
+
+Run archlinux on Windows Terminal -assuming it's already installed.
+Initialize keyring and update system.
+```bash
+pacman-key --init
+pacman-key --populate archlinux
+pacman -Syu
+```
+
+Create a proper user; arch boots as root.
+```bash
+pacman -S sudo
+useradd -m -G wheel -s /bin/bash your_username
+passwd your_username
+```
+
+Install NeoVim and authorize your user to execute sudo commands.
+```bash
+sudo pacman -S nvim
+EDITOR=nvim visudo
+```
+Uncomment this line `%wheel ALL=(ALL:ALL) ALL`, then save and quit `:wq`.
+
+Terminate archlinux from PowerShell.
+```powershell
+wsl --terminate archlinux
+```
+
+Let's boot archlinux, and set your default user.
+```bash
+sudo nvim /etc/wsl.conf
+```
+
+Add the section below,
+```
+[user]
+default = your_username
+```
+save and quit `:wq`.
+
+Lastly, shotdown archlinux from the PowerShell.
+```powershell
+wsl --shutdown
+```
+
+## Set up the environment
+
+Install all the utilities.
+```bash
+sudo pacman -S zsh unzip tmux htop neovim curl wget bat ripgrep fd zoxide fzf fastfetch
+```
+
+Install OhMyZsh, and set `zsh` as the default shell when prompted.
+```bash
+sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+```
+You can always manually set it with `chsh -s $(which zsh)`.
+
+## Set up SSH agent for GitHub
+```bash
+sudo pacman -S openssh
+ssh-keygen -t ed25519 -C "your_email@example.com"
+eval "$(ssh-agent -s)"
+ssh-add ~/.ssh/id_ed25519
+
+# copy the output for GitHub authentication:
+cat ~/.ssh/id_ed25519.pub
+```
+
+## Set up AUR helper
+```bash
+mkdir ~/.builds && cd ~/.builds
+git clone https://aur.archlinux.org/yay.git
+cd yay
+makepkg -si
+```
+
+## Set up the clipboard
+This will allow yanking and pasting from nvim into Windows and vice versa.
+```bash
+yay -S win32yank-bin
+
+# sanity check
+file /usr/bin/win32yank.exe
+```
+
+Let's make sure they get along. Edit the WSL config file,
+```bash
+sudo nvim /etc/wsl.conf
+```
+and add this section below.
+```
+[interop]
+enabled = true
+appendWindowsPath = true
+```
+
+Mandatory shutdown from the PowerShell.
+```powershell
+wsl --shutdown
+```
+
+Sometimes the registration that tells Linux the `.exe` files belong to windows get dropped. If at any point yanking stops working, manually re-register it to test if this is the issue; then shutdown WSL from the PowerShell.
+```bash
+# Note: If you get an "image busy" error, it's already registered, which is fine.
+sudo sh -c 'echo :WSLInterop:M::MZ::/init:PF > /proc/sys/fs/binfmt_misc/register'
+```
+
 
 ## Prepare bare repository
 1. To avoid recursion problems, let's make sure our source repository ignores the folder where we'll clone it: `echo ".dotfiles" >> ~/.gitignore`.
 2. Let's clone our dotfiles into a bare repository in a "dot" folder `git clone --bare git@github.com:kikedose/dotfiles.git ~/.dotfiles`.
-3. Define the alias in the current shell scope: `alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'`. This alias should already be included in our `.zshrc`.
+3. Define the alias in the current shell scope: `alias dotfiles='/usr/bin/git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'`. This alias will be included in our `.zshrc`.
 
-## Set up your own repo
-If you forked this repo and plan to track your fork, skip to step 4.
+If you forked this repo and plan to track your fork:
+- Create your own empty repository on GitHub/GitLab/etc.
+- Update the remote: `dotfiles remote set-url origin <your-git-repo-url>`.
+- Verify the change with: `dotfiles remote -v`.
 
-1. Create your own empty repository on GitHub/GitLab/etc.
-2. Update the remote: `dotfiles remote set-url origin <your-git-repo-url>`.
-3. Verify the change with: `dotfiles remote -v`.
 4. Checkout the actual content from the bare repository to your $HOME: `dotfiles checkout`.
 
 The step above might fail with a message like:
-```BASH
+```bash
 error: The following untracked working tree files would be overwritten by checkout:
     .bashrc
     .gitignore
 Please move or remove them before you can switch branches.
 Aborting
 ```
-This is because your $HOME folder might already have some stock configuration files which would be overwritten by Git. The solution is simple: back up the files if you care about them, remove them if you don't care.
+This is because your $HOME folder might already have some stock configuration files which would be overwritten by Git.
 Re-run the checkout if you had problems.
 
-5. Set the flag 'showUntrackedFiles' to 'no' on this specific (local) repository: `dotfiles config --local status.showUntrackedFiles no`. This prevents `dotfiles status` to show untracked (unwanted) files in the $HOME directory.
+5. Set the flag 'showUntrackedFiles' to 'no' on this specific (local) repository:
+```bash
+dotfiles config --local status.showUntrackedFiles no
+```
+This prevents `dotfiles status` to show untracked (unwanted) files in the $HOME directory.
 
 From now on you can now type config commands to add and update your dotfiles:
-```BASH
+```bash
 dotfiles status
 dotfiles add .zshrc
 dotfiles commit -m "updated zsh config"
 dotfiles push -u origin main
 ```
 
-## Set up clipboard
-We want to prevent the system `ctrl-c` and `ctrl-v` from conflicting with Neovim's keybinds.
-These are the relevant changes on the **Windows Terminal** JSON config file (note the trailing commas):
-```JSON
-{
-    ...,
-    "keybindings":
-    [
-        {
-            "id": "User.paste",
-            "keys": "ctrl+shift+v"
-        },
-        {
-            "id": "User.copy.644BA8F2",
-            "keys": "ctrl+shift+c"
-        },
-        ...
-    ],
-    ...
-}
+## Nvim Plugin Dependencies
+Install `nvm` (Node Version Manager).
+```bash
+sudo pacman -S nvm
+```
+Our `.zshrc` should already have the PATH configs for nvm. If not, add the install output manually.
+Source the config file.
+```bash
+source ~/.zshrc
 ```
 
-## Extras
-- Install `nvm` (Node Version Manager).
-- Install `tmux` (Terminal Multiplexer).
-- Install utilities `tree, neofetch, bat, ripgrep, fzf, delta-git, fd`.
-- Clone `fzf-git` into ~/.local/share/fzf-git/.
+Install `node` and enable `pnpm`.
+```bash
+nvm install --lts
+corepack enable
+```
 
-TODO: automate installs in a script
+TreeSitter's Nvim adapter requires a C compiler plus some dependencies (breaking changes from laterst version):
+```bash
+sudo pacman -S clang llvm tree-sitter tree-sitter-cli
+```
+Check `tar` and `curl` are indeed installed.
+
+## NerdFont
+Download the [JetBrains Mono](https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/JetBrainsMono.zip) patched font family on Windows. Install the "MONO" variants, since we will be using them exclusively from the terminal (Alacritty).
+
+## Alacritty
+Download the [Alacritty](https://alacritty.org/) `.msi` installer and proceed with the installation.
+It won't create a config file, but it will look for one at `%APPDATA%\alacritty\alacritty.toml`. Either create it manually from the windows explorer, or via PowerShell:
+```powershell
+ni "$env:APPDATA\alacritty\alacritty.toml" -f
+```
+Then edit the file and paste our [config](https://github.com/kikedose/dotfiles/blob/main/.config/alacritty/alacritty.toml).
+```powershell
+winget install Microsoft.Edit
+edit "$env:APPDATA\alacritty\alacritty.toml"
+```
+Uncomment the bottom `[terminal.shell]` section.
+```toml
+[terminal.shell]
+# WSL
+program = "C:\\Windows\\system32\\wsl.exe"
+args = ["--cd", "~"]
+```
 
 ## .gitconfig
-```GIT
+
+Add your email and user name to your gitconfig.
+```git
 [alias]
   ladog = log --all --decorate --oneline --graph
 [init]
   defaultBranch = main
+[user]
+  email = your.email@address.com
+  name = John Salchichón
 ```
