@@ -60,6 +60,28 @@ Lastly, shotdown archlinux from the PowerShell.
 wsl --shutdown
 ```
 
+## Locales
+We need to enable UTF-8 to allow the input of special characters within the CLI.
+
+Uncomment the desired locales from your locale list.
+```bash
+sudo nvim /etc/locale.gen
+# en_US.UTF-8 UTF-8
+```
+
+Generate the locales.
+```bash
+sudo locale-gen
+```
+
+Watch the output, and check:
+```
+locale -a
+```
+
+You must see your desired locales there.
+
+
 ## Set up the environment
 
 Install all the utilities.
