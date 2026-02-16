@@ -114,6 +114,8 @@ cd yay
 makepkg -si
 ```
 
+If you get an error because of missing binaries, try `sudo pacman -S --needed base-devel` before makepkg.
+
 ## Set up the clipboard
 This will allow yanking and pasting from nvim into Windows and vice versa.
 ```bash
