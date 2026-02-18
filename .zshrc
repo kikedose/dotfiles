@@ -42,6 +42,21 @@ dotfiles() {
 }
 # compdef dotfiles=git
 
+# VOLUME
+vol() {
+    if [[ "$1" =~ ^[0-9]+$ ]]; then
+        if [ "$1" -ge 0 ] && [ "$1" -le 100 ]; then
+            local vol_decimal=$(printf "%.2f" $(( $1 / 100.0 )))
+            wpctl set-volume @DEFAULT_SINK@ "$vol_decimal"
+            echo "Volume set to $1%"
+        else
+            echo "Error: Please enter a number between 0 and 100."
+        fi
+    else
+        echo "Usage: vol <0-100>"
+    fi
+}
+
 # dadd() {
 #   local file
 #   file=$(dotfiles status --porcelain | fzf --preview "bat --style=numbers --color=always --line-range=:500 $HOME/{1}" | awk '{print $2}')
