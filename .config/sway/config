@@ -10,6 +10,13 @@ set {
   $right l
 }
 
+set {
+  $red #cc241d
+  $accent #ebdbb2
+  $dark_gray #3c3836
+  $transparent_gray #3c383655
+}
+
 # Terminal emulator
 set $term foot
 
@@ -212,12 +219,14 @@ bar {
 
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
-    status_command while date +'%Y-%m-%d %X'; do sleep 1; done
+    # status_command while date +'%Y-%m-%d %X'; do sleep 1; done
 
     colors {
-        statusline #ffffff
-        background #323232
-        inactive_workspace #32323200 #32323200 #5c5c5c
+        statusline $accent
+        background $transparent_gray
+        # active_workspace $accent $dark_gray $accent
+        focused_workspace $accent $dark_gray $accent
+        inactive_workspace $transparent_gray $transparent_gray $accent
     }
 }
 
@@ -227,15 +236,9 @@ default_floating_border pixel 2
 smart_borders on
 gaps inner 8
 
-set {
-  $red #cc241d
-  $accent #ebdbb2
-  $darkgray #3c3836
-}
-
-client.focused          $accent $accent $darkgray $accent $accent
-client.focused_inactive $darkgray $darkgray $accent $darkgray $darkgray
-client.unfocused        $darkgray $darkgray $accent $darkgray $darkgray
+client.focused          $accent $accent $dark_gray $accent $accent
+client.focused_inactive $dark_gray $dark_gray $accent $dark_gray $dark_gray
+client.unfocused        $dark_gray $dark_gray $accent $dark_gray $dark_gray
 client.urgent           $red $red $accent $red $red
 
 include /etc/sway/config.d/*
