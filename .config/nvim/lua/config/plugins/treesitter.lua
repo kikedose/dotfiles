@@ -24,7 +24,7 @@ return {
 
     vim.api.nvim_create_autocmd('FileType', {
       pattern = {
-        'dart',
+        -- 'dart',
         'javascript',
         'javascriptreact',
         'typescript',

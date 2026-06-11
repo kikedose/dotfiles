@@ -47,7 +47,7 @@ output eDP-1 resolution 1366x768 position 0,0
 
 ### Input configuration
   input type:touchpad {
-      dwt enabled
+      dwt disabled
       tap enabled
       natural_scroll enabled
       middle_emulation enabled
@@ -219,7 +219,7 @@ bar {
 
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
-    # status_command while date +'%Y-%m-%d %X'; do sleep 1; done
+    status_command while date +'%d %^b %Y %H:%M'; do sleep 60; done
 
     colors {
         statusline $accent
