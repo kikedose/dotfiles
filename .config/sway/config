@@ -69,6 +69,7 @@ bindsym {
   $mod+d exec $menu
   $mod+z exec swaylock
   $mod+Shift+c reload
+  $mod+b exec firefox-developer-edition
 }
 
 # Drag floating windows by holding down $mod and left mouse button.
