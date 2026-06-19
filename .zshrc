@@ -72,9 +72,6 @@ get_battery_percentage() {
     return 1
 }
 
-# Alias to call the function
-alias battery="get_battery_percentage"
-
 alias battery="get_battery_percentage"
 
 # dadd() {
