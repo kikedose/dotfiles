@@ -57,6 +57,26 @@ vol() {
     fi
 }
 
+get_battery_percentage() {
+    for bat in /sys/class/power_supply/BAT*; do
+        if [ -f "$bat/capacity" ]; then
+            local cap=$(cat "$bat/capacity")
+            local bat_status=$(cat "$bat/status" 2>/dev/null || echo "Unknown")
+
+            echo "Battery (${bat##*/}): ${cap}% [${bat_status}]"
+            return 0
+        fi
+    done
+
+    echo "No battery found under /sys/class/power_supply/"
+    return 1
+}
+
+# Alias to call the function
+alias battery="get_battery_percentage"
+
+alias battery="get_battery_percentage"
+
 # dadd() {
 #   local file
 #   file=$(dotfiles status --porcelain | fzf --preview "bat --style=numbers --color=always --line-range=:500 $HOME/{1}" | awk '{print $2}')

@@ -1,7 +1,13 @@
 -- THIS FILE IS LOADED BEFORE THE PLUGINS
 
 -- No automatic comment insertion
-vim.cmd([[autocmd FileType * set formatoptions-=ro]])
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = '*',
+  desc = 'Disable automatic comment insertion',
+  callback = function()
+    vim.opt_local.formatoptions:remove({ 'r', 'o' })
+  end,
+})
 
 -- Yanking highlight
 vim.api.nvim_create_autocmd('TextYankPost', {
@@ -10,14 +16,6 @@ vim.api.nvim_create_autocmd('TextYankPost', {
   callback = function()
     vim.highlight.on_yank()
   end,
-})
-
--- Rounded floating windows
-vim.diagnostic.config({
-  float = {
-    border = 'rounded',
-    max_width = 80,
-  },
 })
 
 -- Close all buffers except the current one

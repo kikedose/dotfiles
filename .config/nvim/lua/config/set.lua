@@ -23,6 +23,8 @@ elseif vim.fn.has('mac') == 1 then
   vim.opt.clipboard = 'unnamed'
 end
 
+vim.o.winborder = 'rounded'
+
 vim.opt.mouse = ''
 vim.opt.termguicolors = true
 vim.opt.tabstop = 2
